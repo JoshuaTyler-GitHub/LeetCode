@@ -12,20 +12,15 @@ const findLeastNumOfUniqueInts = function (arr, k) {
       numberCounts[arr[index]] = 1;
     }
   }
-  console.log('numberCounts', numberCounts);
 
   const sortedLowest = Object.entries(numberCounts).sort(
     ([key1, value1], [key2, value2]) => value1 - value2,
   );
-  console.log('sortedLowest', sortedLowest);
 
   let sortedLowestIndex = 0;
   let removalsRemaining = Number(k);
   while (removalsRemaining > 0) {
     const [lowestCountKey, lowestCountValue] = sortedLowest[sortedLowestIndex];
-    console.log('lowestCountKey', lowestCountKey);
-    console.log('lowestCountValue', lowestCountValue);
-    console.log('removalsRemaining', removalsRemaining);
     if (removalsRemaining >= lowestCountValue) {
       delete numberCounts[lowestCountKey];
       removalsRemaining -= lowestCountValue;
@@ -35,9 +30,6 @@ const findLeastNumOfUniqueInts = function (arr, k) {
       removalsRemaining = 0;
     }
   }
-  console.log('numberCounts-cleaned', numberCounts);
-
-  console.log('set', new Set(Object.keys(numberCounts)));
   return new Set(Object.keys(numberCounts)).size;
 };
 
